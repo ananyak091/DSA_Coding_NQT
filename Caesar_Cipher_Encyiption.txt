@@ -1,0 +1,44 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+import java.io.*;
+
+public class Main
+{
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String text = br.readLine();
+		int key = Integer.parseInt(br.readLine().trim());
+		
+		if(key <= 0) {
+		    System.out.println("Invalid Input");
+		    return;
+		}
+		
+		StringBuilder result = new StringBuilder();
+		
+		for(int i=0; i<text.length(); i++) {
+		    char ch = text.charAt(i);
+		    
+		    if(ch >= 'A' && ch <= 'Z') {
+		        char newCh = (char)  ( ( (ch - 'A' + key) % 26 ) + 'A' );
+		        result.append(newCh);
+		        
+		    } else if(ch >= 'a' && ch <= 'z') {
+		        char newCh = (char)  ( ( (ch - 'a' + key) % 26 ) + 'a' );
+		        result.append(newCh);
+		        
+		    } else if(ch >= '0' && ch <= '9') {
+		        char newCh = (char)  ( ( (ch - '0' + key) % 10 ) + '0' );
+		        result.append(newCh);
+		    }else {
+                result.append(ch);
+            }
+		}
+		System.out.println(result.toString());
+	}
+}
