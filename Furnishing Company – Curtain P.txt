@@ -1,0 +1,76 @@
+{* 🏢 Furnishing Company – Curtain Packing Problem
+
+A furnishing company manufactures curtains of two colors:
+
+'a' → Aqua
+
+'b' → Black
+
+The curtains are arranged in a sequence represented by a string S.
+
+The company packs curtains into boxes.
+Each box can contain exactly L curtains.
+
+Rules:
+
+Curtains must be packed in the same order as they appear in the string.
+
+You cannot rearrange the curtains.
+
+Each box must contain exactly L consecutive curtains.
+
+Multiple boxes can be formed from the string.
+
+Your task is to determine:
+
+The maximum number of Aqua curtains ('a') that can be present in any single box.
+Input: aaabbabbaaa
+4
+Output: 3 *}
+
+
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        // Remove spaces
+        String S = br.readLine().replaceAll(" ", "").trim();
+        int L = Integer.parseInt(br.readLine().trim());
+
+        int n = S.length();
+
+        if (L > n || L == 0) {
+            System.out.println(0);
+            return;
+        }
+
+        int maxA = 0;
+        int currentA = 0;
+
+        for (int i = 0; i < L; i++) {
+            if (S.charAt(i) == 'a') {
+                currentA++;
+            }
+        }
+
+        maxA = currentA;
+
+        for (int i = L; i < n; i++) {
+
+            if (S.charAt(i - L) == 'a') {
+                currentA--;
+            }
+
+            if (S.charAt(i) == 'a') {
+                currentA++;
+            }
+
+            maxA = Math.max(maxA, currentA);
+        }
+
+        System.out.println(maxA);
+    }
+}
