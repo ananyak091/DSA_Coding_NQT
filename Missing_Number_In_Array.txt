@@ -1,0 +1,39 @@
+
+import java.io.*;
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int n = Integer.parseInt(br.readLine().trim());
+		String[] input = br.readLine().trim().split("\\s+");
+		
+		int[] arr = new int[n];
+		for(int i=0; i<n; i++) {
+		    arr[i] = Integer.parseInt(input[i]);
+		}
+		
+		// XOR Logic
+		int count = 1; 
+		int XOR = 0;
+		
+		for(int i=0; i<n; i++) {
+		    XOR ^= arr[i];
+		    XOR ^= count;
+		    count++;
+		}
+		
+// 		int actualSum = n * (n + 1) / 2;
+		
+// 		int sum = 0;
+// 		for(int i=0; i<n; i++) {
+// 		    sum += arr[i];
+// 		}
+		
+// 		int missingValue = actualSum - sum;
+		
+		System.out.println("Missing Value is "+ XOR);
+	}
+}
