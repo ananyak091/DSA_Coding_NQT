@@ -1,0 +1,44 @@
+
+import java.io.*;
+import java.util.*;
+
+public class Main
+{
+    public static int digits(int n) {
+        int count = 0;
+        while(n > 0) {
+            n = n / 10;
+            count++;
+        }
+        return count;
+    }
+    public static boolean isAmstrong(int num) {
+        int power = digits(num);
+        int n = num;
+        int sum = 0;
+        while(n > 0) {
+            int lastDigit = n % 10;
+            n = n / 10;
+            sum += Math.pow(lastDigit, power);
+        }
+        if(sum == num) {
+            return true;
+        } else{
+            return false;
+        }
+    }
+    
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int n = Integer.parseInt(br.readLine().trim());
+		
+		if(isAmstrong(n)) {
+		   System.out.println("True its an Amstrong Number"); 
+		} else{
+		    System.out.println("No its not an Amstrong Number");
+		}
+		
+		
+	}
+}
