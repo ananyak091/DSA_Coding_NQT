@@ -1,0 +1,63 @@
+{* Jack and Sundays
+
+Jack is always excited about Sunday. It is his favourite day, as he gets to play all day and go cycling with his friends.
+
+At the beginning of every month, Jack counts how many Sundays he will get to enjoy.
+
+The month can start on any day of the week — Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, or Saturday.
+
+Given:
+
+A string representing the starting day of the month.
+
+An integer N representing the number of days from the start of the month.
+
+Your task is to determine how many Sundays occur within those N days.
+📥 Input Format
+
+First line → A string representing the starting day of the month (sun, mon, tue, wed, thu, fri, sat).
+
+Second line → An integer N representing the number of days.
+
+.
+
+📤 Output Format
+
+Print a single integer representing the number of Sundays within N days.
+ *}
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String startDay = br.readLine().trim().toLowerCase();
+        int n = Integer.parseInt(br.readLine().trim());
+
+        // Map days
+        Map<String, Integer> map = new HashMap<>();
+        map.put("sun", 0);
+        map.put("mon", 1);
+        map.put("tue", 2);
+        map.put("wed", 3);
+        map.put("thu", 4);
+        map.put("fri", 5);
+        map.put("sat", 6);
+
+        int startIndex = map.get(startDay);
+
+        int distance = (7 - startIndex) % 7;
+
+        int count = 0;
+
+        if (distance < n) {
+            count = 1 + (n - distance - 1) / 7;
+        }
+
+        System.out.println(count);
+    }
+}
