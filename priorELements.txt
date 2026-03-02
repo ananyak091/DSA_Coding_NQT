@@ -1,0 +1,61 @@
+{**Problem Statement
+
+Given an integer array Arr of size N, the task is to find the count of elements whose value is strictly greater than all of its previous elements.
+
+Note:
+
+The first element of the array should always be considered in the count.
+
+An element is counted only if it is greater than every element before it.
+
+Example
+
+Input:
+N = 5
+Arr = {7, 4, 8, 2, 9}
+
+Explanation:
+
+7 is the first element → counted
+
+8 is greater than all previous elements (7, 4) → counted
+
+9 is greater than all previous elements (7, 4, 8, 2) → counted
+
+Total such elements = 3
+
+Output:
+3 **}
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        System.out.println("Enter the array size:");
+        int n = Integer.parseInt(br.readLine().trim());
+        
+        System.out.println("Enter the array elements separated by space:");
+        String[] input = br.readLine().trim().split("\\s+");
+        
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++){
+            arr[i] = Integer.parseInt(input[i]);
+        }
+        
+        int leftMost = arr[0];
+        int count = 1;   // First element always counted
+        
+        for(int i = 1; i < n; i++) {
+            if(arr[i] > leftMost) {   // Strictly greater
+                leftMost = arr[i];
+                count++;
+            }
+        }
+        
+        System.out.println("Total Max Elements: " + count);
+    }
+}
