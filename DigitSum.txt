@@ -1,0 +1,80 @@
+/******************************************************************************
+Problem Statement
+
+An intelligence agency has received reports about some threats. The reports consist of numbers written in a mysterious method.
+
+There is a number N and another number R. All digits of the number N are summed up, and this operation is repeated R number of times. After performing the operation, the final result should be reduced to a single digit.
+
+Your task is to find the single-digit sum of the given number N by repeating the digit-sum operation R times.
+
+Special Condition:
+
+If the value of R is 0, print the output as 0.
+
+Input Format
+
+First line → Integer N
+
+Second line → Integer R
+
+Output Format
+
+Print the final single-digit result.
+
+Example 1
+
+Input:
+
+99
+3
+
+Explanation:
+
+Sum of digits of N = 9 + 9 = 18
+
+Repeat the sum R times (3 times):
+18 + 18 + 18 = 54
+
+Reduce to single digit:
+5 + 4 = 9
+
+Output:
+
+9
+
+*******************************************************************************/
+import java.io.*;
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) throws Exception {
+	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter the number");
+		int n = Integer.parseInt(br.readLine().trim());
+		System.out.println("Enter the R number");
+		int r = Integer.parseInt(br.readLine().trim());
+		
+		int digitSum = 0;
+		int num = n;
+		
+		// Step 1: Find sum of digitSum
+		while(num > 0) {
+		    digitSum += num % 10;
+		    num /= 10;
+		}
+		
+		// Step 2: Multiply By  r 
+		long total = digitSum * r;
+		
+		// Step 3: Reduce to single digit
+		long result;
+		
+		if(total == 0) {
+		    result = 0;
+		} else{
+		    result = 1 + (total - 1) % 9;
+		}
+		
+		System.out.println("Total Single Digit "+ result);
+	}
+}
